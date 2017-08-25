@@ -179,6 +179,48 @@ module.exports = {
                 {
                   loader: 'css-loader',
                   options: {
+                    importLoaders: 1,
+                    modules: true,
+                  }
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+                    plugins: function() {
+                      return [
+                        require('postcss-flexbugs-fixes'),
+                        require("postcss-cssnext")({
+                          browsers: [
+                            '>1%',
+                            'last 4 versions',
+                            'Firefox ESR',
+                            'not ie < 9', // React doesn't support IE8 anyway
+                          ],
+                          flexbox: 'no-2009',
+                        }),
+                      ];
+                    }
+                  }
+                }
+              ],
+              exclude: /.*(node_modules|global).*\.css$/,
+            },
+            extractTextPluginOptions
+          )
+        )
+        // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+      },
+      {
+        test: /.*(node_modules|global).*\.css$/,
+        loader: ExtractTextPlugin.extract(
+          Object.assign(
+            {
+              fallback: 'style-loader',
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
                     importLoaders: 1
                   }
                 },
@@ -188,14 +230,16 @@ module.exports = {
                     ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
                     plugins: function() {
                       return [
-                        autoprefixer({
+                        require('postcss-flexbugs-fixes'),
+                        require("postcss-cssnext")({
                           browsers: [
                             '>1%',
                             'last 4 versions',
                             'Firefox ESR',
-                            'not ie < 9' // React doesn't support IE8 anyway
-                          ]
-                        })
+                            'not ie < 9', // React doesn't support IE8 anyway
+                          ],
+                          flexbox: 'no-2009',
+                        }),
                       ];
                     }
                   }
