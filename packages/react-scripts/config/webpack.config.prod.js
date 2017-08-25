@@ -204,11 +204,11 @@ module.exports = {
                   }
                 }
               ],
-              exclude: /.*(node_modules|global).*\.css$/,
             },
             extractTextPluginOptions
           )
-        )
+        ),
+        exclude: /.*(node_modules|global).*\.css$/,
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
       {
