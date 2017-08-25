@@ -1,6 +1,6 @@
 {
   "name": "@postlight/postlight-react-scripts",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Configuration and scripts for Create React App - Postlight style",
   "repository": "postlight/create-react-app",
   "license": "BSD-3-Clause",
@@ -41,7 +41,7 @@
     "eslint": "3.8.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-prettier": "^2.3.0",
-    "eslint-config-react-app": "^2.0.0",
+    "eslint-config-react-app": "^0.5.2",
     "eslint-loader": "1.6.1",
     "eslint-plugin-compat": "^1.0.4",
     "eslint-plugin-flowtype": "2.21.0",
