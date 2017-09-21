@@ -118,10 +118,14 @@ module.exports = {
             // @remove-on-eject-begin
             // Point ESLint to our predefined config.
             options: {
-              // TODO: consider separate config for production,
-              // e.g. to enable no-console and no-debugger only in production.
-              configFile: path.join(__dirname, '../.eslintrc'),
-              useEslintrc: false
+              eslintPath: require.resolve('eslint'),
+              // @remove-on-eject-begin
+              baseConfig: {
+                extends: [require.resolve('eslint-config-react-app')],
+              },
+              ignore: false,
+              useEslintrc: true,
+              // @remove-on-eject-end
             },
             // @remove-on-eject-end
             loader: 'eslint-loader'
@@ -209,6 +213,48 @@ module.exports = {
           )
         ),
         exclude: /.*(node_modules|global).*\.css$/,
+        // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+      },
+      {
+        test: /\.(scss|sass)$/,
+        loader: ExtractTextPlugin.extract(
+          Object.assign(
+            {
+              fallback: 'style-loader',
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
+                    importLoaders: 1,
+                    modules: true,
+                  }
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+                    plugins: function() {
+                      return [
+                        require('postcss-flexbugs-fixes'),
+                        require("postcss-cssnext")({
+                          browsers: [
+                            '>1%',
+                            'last 4 versions',
+                            'Firefox ESR',
+                            'not ie < 9', // React doesn't support IE8 anyway
+                          ],
+                          flexbox: 'no-2009',
+                        }),
+                      ];
+                    }
+                  }
+                },
+                'sass-loader',
+              ],
+            },
+            extractTextPluginOptions
+          )
+        ),
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
       {
