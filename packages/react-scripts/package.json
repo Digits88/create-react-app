@@ -1,6 +1,6 @@
 {
   "name": "@postlight/postlight-react-scripts",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description":
     "Configuration and scripts for Create React App - Postlight style",
   "repository": "postlight/create-react-app",
@@ -58,7 +58,7 @@
     "postcss-cssnext": "3.0.2",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
-    "prettier": "^1.5.3",
+    "prettier": "^1.7.0",
     "prettier-eslint": "^6.4.2",
     "promise": "8.0.1",
     "react-dev-utils": "^0.5.0",
